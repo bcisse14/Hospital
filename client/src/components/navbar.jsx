@@ -7,16 +7,14 @@ function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Vérifie si l'utilisateur est connecté (localStorage contient des informations utilisateur)
     const user = localStorage.getItem("user");
-    setIsLoggedIn(!!user); // !!user retourne true si user existe, sinon false
+    setIsLoggedIn(!!user);
   }, []);
 
   const handleLogout = () => {
-    // Supprime les informations utilisateur du localStorage
     localStorage.removeItem("user");
     setIsLoggedIn(false);
-    navigate("/"); // Redirige l'utilisateur vers la page d'accueil
+    navigate("/");
   };
 
   return (
@@ -25,6 +23,9 @@ function Navbar() {
         <Link to="/">Home</Link>
       </div>
       <div className="navbar-links">
+        <Link to="/patients" className="navbar-link">
+          Patients
+        </Link>
         {isLoggedIn ? (
           <button onClick={handleLogout} className="logout-button">
             Se Déconnecter
