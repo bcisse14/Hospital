@@ -14,7 +14,15 @@ export async function createPatient(data) {
 }
 
 export async function updatePatient(id, data) {
-    return await update(`/api/patients/${id}`, data);
+    return await update(`/api/patients/${id}`, {
+        nom: data.nom,
+        prenom: data.prenom,
+        date_naissance: data.date_naissance,
+        adresse: data.adresse,
+        telephone: data.telephone,
+        num_secu_social: data.num_secu_social,
+        sexe: data.sexe,
+      })
 }
 
 export async function deletePatient(id) {
