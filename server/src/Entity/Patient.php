@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Entity;
 
 use App\Repository\PatientRepository;
@@ -9,6 +8,8 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiProperty;
+
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
 #[ApiResource]
 class Patient
@@ -47,18 +48,21 @@ class Patient
      * @var Collection<int, Consultation>
      */
     #[ORM\OneToMany(targetEntity: Consultation::class, mappedBy: 'patient')]
+    #[ApiProperty(readable: true, writable: false)]
     private Collection $consultations;
 
     /**
      * @var Collection<int, RendezVous>
      */
     #[ORM\OneToMany(targetEntity: RendezVous::class, mappedBy: 'patient')]
+    #[ApiProperty(readable: true, writable: false)]
     private Collection $rendezVous;
 
     /**
      * @var Collection<int, Hospitalisation>
      */
     #[ORM\OneToMany(targetEntity: Hospitalisation::class, mappedBy: 'patient')]
+    #[ApiProperty(readable: true, writable: false)]
     private Collection $hospitalisations;
 
     public function __construct()
@@ -81,7 +85,6 @@ class Patient
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
-
         return $this;
     }
 
@@ -93,7 +96,6 @@ class Patient
     public function setPrenom(string $prenom): static
     {
         $this->prenom = $prenom;
-
         return $this;
     }
 
@@ -104,8 +106,11 @@ class Patient
 
     public function setDateNaissance(\DateTimeInterface $date_naissance): static
     {
-        $this->date_naissance = $date_naissance;
-
+        // Si la date est de type DateTimeImmutable, convertissez-la en DateTime
+        $this->date_naissance = $date_naissance instanceof \DateTimeImmutable
+            ? \DateTime::createFromImmutable($date_naissance)
+            : $date_naissance;
+    
         return $this;
     }
 
@@ -117,7 +122,6 @@ class Patient
     public function setAdresse(string $adresse): static
     {
         $this->adresse = $adresse;
-
         return $this;
     }
 
@@ -129,7 +133,6 @@ class Patient
     public function setTelephone(string $telephone): static
     {
         $this->telephone = $telephone;
-
         return $this;
     }
 
@@ -141,7 +144,6 @@ class Patient
     public function setNumSecuSocial(string $num_secu_social): static
     {
         $this->num_secu_social = $num_secu_social;
-
         return $this;
     }
 
@@ -153,7 +155,6 @@ class Patient
     public function setSexe(string $sexe): static
     {
         $this->sexe = $sexe;
-
         return $this;
     }
 
@@ -164,8 +165,11 @@ class Patient
 
     public function setDateEnregistrement(\DateTimeInterface $date_enregistrement): static
     {
-        $this->date_enregistrement = $date_enregistrement;
-
+        // Si la date est de type DateTimeImmutable, convertissez-la en DateTime
+        $this->date_enregistrement = $date_enregistrement instanceof \DateTimeImmutable
+            ? \DateTime::createFromImmutable($date_enregistrement)
+            : $date_enregistrement;
+    
         return $this;
     }
 

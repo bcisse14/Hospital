@@ -1,26 +1,28 @@
 nelmio_cors:
   defaults:
-    allow_credentials: false
-    allow_origin: []
-    allow_headers: []
-    allow_methods: []
+    allow_credentials: true # Permettre l'envoi de cookies ou d'informations d'authentification
+    allow_origin: [] # Utilisé uniquement pour les configurations spécifiques aux chemins
+    allow_headers: ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With'] # Headers autorisés
+    allow_methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'] # Méthodes HTTP autorisées
     allow_private_network: false
-    expose_headers: []
-    max_age: 0
+    expose_headers: ['Access-Control-Allow-Origin','Link', 'X-Total-Count'] # Headers visibles dans les réponses
+    max_age: 3600 # Durée de mise en cache des réponses préliminaires
     hosts: []
     origin_regex: false
     forced_allow_origin_value: ~
     skip_same_as_origin: true
   paths:
-    "^/api/":
-      allow_origin: ["*"]
-      allow_headers: ["*"]
-      allow_methods: ["POST", "PUT", "PATCH", "GET", "DELETE"]
+    "^/api/": # Configuration pour toutes les routes commençant par /api/
+      allow_origin: ["http://localhost:3000"] # Spécifiez l'origine autorisée (front-end React)
+      allow_headers: ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With'] # Headers autorisés
+      allow_methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'] # Méthodes HTTP autorisées
       max_age: 3600
-    "^/":
+      allow_credentials: true # Permettre l'envoi de cookies ou de tokens d'authentification
+    "^/": # Configuration générique pour toutes les autres routes
       origin_regex: true
-      allow_origin: ["^http://localhost:[0-9]+"]
-      allow_headers: ["*"]
-      allow_methods: ["POST", "PUT", "PATCH", "GET", "DELETE"]
+      allow_origin: ["^http://localhost:[0-9]+"] # Permettre les origines locales dynamiques (localhost avec port)
+      allow_headers: ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With'] # Headers autorisés
+      allow_methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'] # Méthodes HTTP autorisées
       max_age: 3600
-      hosts: ['^api\.']
+      allow_credentials: true
+      hosts: []

@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { getPatientById, updatePatient } from "../api/patient";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import de useNavigate
+import { createPatient } from "../../api/patient";
 
-function EditPatient() {
-  const { id } = useParams(); // Récupérer l'id depuis l'URL
-  const navigate = useNavigate();
+function AddPatient() {
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
@@ -13,34 +11,13 @@ function EditPatient() {
     telephone: "",
     num_secu_social: "",
     sexe: "Femme",
+    consultations: [],
+    rendezVous: [],
+    hospitalisations: [],
+    date_enregistrement: new Date().toISOString(),
   });
-  const [loading, setLoading] = useState(false);
 
-  // Fonction pour formater la date au format YYYY-MM-DD
-  const formatDateForInput = (dateString) => {
-    const date = new Date(dateString);
-    return date.toISOString().split("T")[0]; // Retourne YYYY-MM-DD
-  };
-
-  useEffect(() => {
-    const fetchPatient = async () => {
-      try {
-        const patient = await getPatientById(id);
-        setFormData({
-          nom: patient.nom || "",
-          prenom: patient.prenom || "",
-          date_naissance: formatDateForInput(patient.date_naissance) || "",
-          adresse: patient.adresse || "",
-          telephone: patient.telephone || "",
-          num_secu_social: patient.num_secu_social || "",
-          sexe: patient.sexe || "Femme",
-        });
-      } catch (error) {
-        console.error("Erreur lors de la récupération du patient :", error);
-      }
-    };
-    fetchPatient();
-  }, [id]);
+  const navigate = useNavigate(); // Création du hook de navigation
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,21 +26,35 @@ function EditPatient() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
-      await updatePatient(id, formData);
-      alert("Patient modifié avec succès !");
-      navigate("/patients/list"); // Redirige vers la liste des patients
+      await createPatient(formData);
+      alert("Patient ajouté avec succès !");
+      
+      // Redirection vers la liste des patients après l'ajout
+      navigate("/patients/list"); 
+      
+      // Réinitialiser le formulaire après l'ajout
+      setFormData({
+        nom: "",
+        prenom: "",
+        date_naissance: "",
+        adresse: "",
+        telephone: "",
+        num_secu_social: "",
+        sexe: "Femme",
+        consultations: [],
+        rendezVous: [],
+        hospitalisations: [],
+        date_enregistrement: new Date().toISOString(),
+      });
     } catch (error) {
-      console.error("Erreur lors de la modification du patient :", error);
-    } finally {
-      setLoading(false);
+      console.error("Erreur lors de l'ajout du patient :", error);
     }
   };
 
   return (
-    <div className="edit-patient">
-      <h2>Modifier les informations du Patient</h2>
+    <div className="add-patient">
+      <h2>Ajouter un Patient</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nom :</label>
@@ -137,12 +128,10 @@ function EditPatient() {
             <option value="Homme">Homme</option>
           </select>
         </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "Modification en cours..." : "Modifier"}
-        </button>
+        <button type="submit">Ajouter</button>
       </form>
     </div>
   );
 }
 
-export default EditPatient;
+export default AddPatient;

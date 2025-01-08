@@ -19,5 +19,5 @@ export async function updateUser(id, data) {
 }
 
 export async function deleteUser(id) {
-    return await remove(`/api/users/${id}`);
+  return await remove(`/api/users/${id}`);
 }

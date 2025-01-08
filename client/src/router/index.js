@@ -4,10 +4,10 @@ import Home from "../pages/home";
 import SignUp from "../pages/userSignup";
 import Signin from "../pages/userSignin";
 import Navbar from "../components/navbar";
-import Patients from "../pages/patients";
-import AddPatient from "../pages/addPatient";
-import PatientList from "../pages/patientsList";
-import EditPatient from "../pages/editPatient";
+import Patients from "../pages/Patients/patients";
+import AddPatient from "../pages/Patients/addPatient";
+import PatientList from "../pages/Patients/patientsList";
+import EditPatient from "../pages/Patients/editPatient";
 
 function Router() {
   return (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPatients, deletePatient } from "../api/patient";
+import { getPatients, deletePatient } from "../../api/patient";
 import { useNavigate } from "react-router-dom";
 
 function PatientList() {
@@ -8,8 +8,12 @@ function PatientList() {
 
   useEffect(() => {
     const fetchPatients = async () => {
-      const data = await getPatients();
-      setPatients(data);
+      try {
+        const data = await getPatients();
+        setPatients(data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des patients :", error);
+      }
     };
     fetchPatients();
   }, []);

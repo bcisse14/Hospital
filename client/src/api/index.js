@@ -5,12 +5,19 @@ async function api(method, path, data = {}) {
   const options = {
     method: method,
     headers: {
-      "Content-Type": "application/json",
+      "Accept": "application/json",
     },
   };
 
+  // Si ce n'est pas une méthode GET, on ajoute les données au body de la requête
   if (method !== "GET") {
     options.body = JSON.stringify(data); // Convertit les données en JSON
+    // Choisissez le bon Content-Type en fonction de la méthode
+    if (method === "POST") {
+      options.headers["Content-Type"] = "application/json"; // Pour POST, on utilise application/json
+    } else if (method === "PATCH") {
+      options.headers["Content-Type"] = "application/merge-patch+json"; // Pour PATCH, on utilise application/merge-patch+json
+    }
   }
 
   try {
@@ -22,6 +29,12 @@ async function api(method, path, data = {}) {
       throw new Error(errorData.message || "Erreur réseau");
     }
 
+    // Si la réponse a un code 204 (No Content), pas de corps à retourner
+    if (response.status === 204) {
+      return null; // Aucune donnée à renvoyer
+    }
+
+    // Sinon, on retourne les données JSON
     return await response.json(); // Retourne les données JSON
   } catch (error) {
     console.error("API error:", error.message);

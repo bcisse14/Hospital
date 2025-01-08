@@ -1,8 +1,10 @@
-// AddPatient.js
-import React, { useState } from "react";
-import { createPatient } from "../api/patient";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { getPatientById, updatePatient } from "../../api/patient";
 
-function AddPatient() {
+function EditPatient() {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
@@ -14,8 +16,45 @@ function AddPatient() {
     consultations: [],
     rendezVous: [],
     hospitalisations: [],
-    date_enregistrement: new Date().toISOString(),
+    date_enregistrement: "",
   });
+  const [loading, setLoading] = useState(false);
+
+  const formatDateForInput = (dateString) => {
+    const date = new Date(dateString);
+    return date.toISOString().split("T")[0];
+  };
+
+  useEffect(() => {
+    const fetchPatient = async () => {
+      try {
+        const patient = await getPatientById(id);
+        if (!patient) {
+          alert("Patient introuvable !");
+          navigate("/patients/list");
+          return;
+        }
+        setFormData({
+          ...formData,
+          nom: patient.nom || "",
+          prenom: patient.prenom || "",
+          date_naissance: formatDateForInput(patient.date_naissance) || "",
+          adresse: patient.adresse || "",
+          telephone: patient.telephone || "",
+          num_secu_social: patient.num_secu_social || "",
+          sexe: patient.sexe || "Femme",
+          consultations: patient.consultations || [],
+          rendezVous: patient.rendezVous || [],
+          hospitalisations: patient.hospitalisations || [],
+          date_enregistrement: patient.date_enregistrement || new Date().toISOString(),
+        });
+      } catch (error) {
+        console.error("Erreur lors de la récupération du patient :", error);
+        alert("Erreur de connexion au serveur. Veuillez réessayer.");
+      }
+    };
+    fetchPatient();
+  }, [id, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,30 +63,24 @@ function AddPatient() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      await createPatient(formData);
-      alert("Patient ajouté avec succès !");
-      setFormData({
-        nom: "",
-        prenom: "",
-        date_naissance: "",
-        adresse: "",
-        telephone: "",
-        num_secu_social: "",
-        sexe: "Femme",
-        consultations: [],
-        rendezVous: [],
-        hospitalisations: [],
-        date_enregistrement: new Date().toISOString(),
-      });
+      await updatePatient(id, formData);
+      alert("Patient modifié avec succès !");
+      navigate("/patients/list");
     } catch (error) {
-      console.error("Erreur lors de l'ajout du patient :", error);
+      console.error("Erreur lors de la modification du patient :", error);
+      alert(
+        "Impossible de modifier le patient. Veuillez vérifier les données ou réessayer plus tard."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="add-patient">
-      <h2>Ajouter un Patient</h2>
+    <div className="edit-patient">
+      <h2>Modifier les informations du Patient</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nom :</label>
@@ -121,10 +154,12 @@ function AddPatient() {
             <option value="Homme">Homme</option>
           </select>
         </div>
-        <button type="submit">Ajouter</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Modification en cours..." : "Modifier"}
+        </button>
       </form>
     </div>
   );
 }
 
-export default AddPatient;
+export default EditPatient;

@@ -8,13 +8,15 @@ function Navbar() {
 
   useEffect(() => {
     const user = localStorage.getItem("user");
-    setIsLoggedIn(!!user);
+    console.log("User from localStorage:", user);  // Log pour vérifier si user est bien récupéré
+    setIsLoggedIn(!!user); // On met à jour l'état en fonction de la présence de l'utilisateur dans le localStorage
   }, []);
 
   const handleLogout = () => {
+    console.log("Déconnexion de l'utilisateur");
     localStorage.removeItem("user");
     setIsLoggedIn(false);
-    navigate("/");
+    navigate("/"); // Redirige vers la page d'accueil après déconnexion
   };
 
   return (
