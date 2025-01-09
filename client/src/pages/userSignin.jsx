@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { getUsers } from "../api/userService.js";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import "../assets/form.css";
 import "../assets/home.css";
 
@@ -9,6 +10,7 @@ function Signin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,13 +22,7 @@ function Signin() {
 
       if (user) {
         console.log("User signed in successfully:", user);
-
-        if (rememberMe) {
-          localStorage.setItem("user", JSON.stringify(user));
-        } else {
-          localStorage.removeItem("user");
-        }
-
+        login(user, rememberMe); // Utilisez la méthode du contexte
         navigate("/"); // Redirige vers la page d'accueil
       } else {
         setError("Invalid email or password.");
