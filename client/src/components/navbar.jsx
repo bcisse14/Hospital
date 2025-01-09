@@ -19,9 +19,17 @@ function Navbar() {
       </div>
       <div className="navbar-links">
         {isLoggedIn ? (
-          <button onClick={handleLogout} className="logout-button">
-            Se Déconnecter
-          </button>
+          <>
+            <Link to="/patients" className="navbar-link">
+              Patients
+            </Link>
+            <Link to="/medecins" className="navbar-link">
+              Médecins
+            </Link>
+            <button onClick={handleLogout} className="logout-button">
+              Se Déconnecter
+            </button>
+          </>
         ) : (
           <>
             <Link to="/signin" className="navbar-link">
