@@ -8,6 +8,10 @@ import Patients from "../pages/Patients/patients";
 import AddPatient from "../pages/Patients/addPatient";
 import PatientList from "../pages/Patients/patientsList";
 import EditPatient from "../pages/Patients/editPatient";
+import Medecins from "../pages/Medecins/medecins";
+import AddMedecin from "../pages/Medecins/addMedecin";
+import MedecinList from "../pages/Medecins/medecinList";
+import EditMedecin from "../pages/Medecins/editMedecin";
 
 function Router() {
   return (
@@ -23,6 +27,11 @@ function Router() {
           <Route path="list" element={<PatientList />} />
         </Route>
           <Route path="/patients/edit/:id" element={<EditPatient />} />
+        <Route path="/medecins" element={<Medecins />}>
+          <Route path="add" element={<AddMedecin />} />
+         <Route path="list" element={<MedecinList />} />
+        </Route>
+      <Route path="/medecins/edit/:id" element={<EditMedecin />} />;
       </Routes>
 
     </BrowserRouter>
