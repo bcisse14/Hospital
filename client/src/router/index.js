@@ -12,7 +12,14 @@ import Medecins from "../pages/Medecins/medecins";
 import AddMedecin from "../pages/Medecins/addMedecin";
 import MedecinList from "../pages/Medecins/medecinList";
 import EditMedecin from "../pages/Medecins/editMedecin";
-
+import Consultations from "../pages/Consultations/consultation";
+import AddConsultation from "../pages/Consultations/addConsultation";
+import ConsultationList from "../pages/Consultations/consultationList";
+import EditConsultation from "../pages/Consultations/editConsultation";
+import HospitalisationList from "../pages/Hospitalisations/hospitalisationList";
+import AddHospitalisation from "../pages/Hospitalisations/addHospitalisation";
+import Hospitalisations from "../pages/Hospitalisations/hospitalisation";
+import EditHospitalisation from "../pages/Hospitalisations/editHospitalisation";
 function Router() {
   return (
     <BrowserRouter>
@@ -32,7 +39,18 @@ function Router() {
          <Route path="list" element={<MedecinList />} />
         </Route>
       <Route path="/medecins/edit/:id" element={<EditMedecin />} />;
+      <Route path="/consultations" element={<Consultations />}>
+        <Route path="add" element={<AddConsultation />} />
+        <Route path="list" element={<ConsultationList />} />
+      </Route>
+      <Route path="/consultations/edit/:id" element={<EditConsultation />} />
+      <Route path="/hospitalisations" element={<Hospitalisations />}>
+        <Route path="/hospitalisations/add" element={<AddHospitalisation />} />
+        <Route path="/hospitalisations/list" element={<HospitalisationList />} />
+      </Route>
+      <Route path="/hospitalisations/edit/:id" element={<EditHospitalisation />} />
       </Routes>
+
 
     </BrowserRouter>
   );

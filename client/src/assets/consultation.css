@@ -1,0 +1,121 @@
+/* Style général pour le formulaire */
+.add-consultation {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* Pour le positionnement relatif des suggestions */
+}
+
+/* Titre du formulaire */
+.add-consultation h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Espacement et style des labels */
+.add-consultation label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Style des champs de texte et textarea */
+.add-consultation input[type="text"],
+.add-consultation input[type="date"],
+.add-consultation textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+.add-consultation input[type="text"]:focus,
+.add-consultation input[type="date"]:focus,
+.add-consultation textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Style des suggestions de recherche */
+.suggestions-list {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: calc(100% - 20px);
+    /* Ajuste la largeur des suggestions en fonction du champ de saisie */
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    margin-top: 5px;
+    left: 10px;
+    /* Pour que les suggestions s'alignent correctement avec les champs de saisie */
+}
+
+/* Style des éléments de suggestion */
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Style du bouton de soumission */
+.add-consultation button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.add-consultation button:hover {
+    background-color: #45a049;
+}
+
+/* Ajouter un peu d'espace aux champs */
+.add-consultation>div {
+    position: relative;
+}
+
+/* Ajouter un peu d'espace entre le formulaire et les éléments */
+.add-consultation form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Style pour textarea (pour diagnostique et traitement) */
+.add-consultation textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Amélioration de l'apparence du champ de recherche */
+.add-consultation input[type="text"] {
+    padding-left: 30px;
+}
+
+/* Positionner les icônes à l'intérieur des champs de texte (optionnel, si tu veux ajouter une icône) */
+.add-consultation input[type="text"]::placeholder {
+    font-style: italic;
+    color: #aaa;
+}

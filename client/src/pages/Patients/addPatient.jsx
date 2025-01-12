@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import de useNavigate
 import { createPatient } from "../../api/patient";
 
+
 function AddPatient() {
   const [formData, setFormData] = useState({
     nom: "",
