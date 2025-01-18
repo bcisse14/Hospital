@@ -47,6 +47,9 @@ function ConsultationList() {
   const handleEdit = (id) => {
     navigate(`/consultations/edit/${id}`);
   };
+  const handleDetails = (id) => {
+    navigate(`/consultations/details/${id}`);
+  };
 
   const filteredConsultations = consultations.filter((consultation) => {
     const patientId = extractIdFromUrl(consultation.patient);
@@ -108,6 +111,9 @@ function ConsultationList() {
               <strong>Date:</strong>{" "}
               {new Date(consultation.date_consultation).toLocaleDateString()}
               <div className="action-buttons">
+              <button onClick={() => handleDetails(consultation.id)}>
+                  Voir les détails
+                </button>
                 <button onClick={() => handleDelete(consultation.id)}>Supprimer</button>
                 <button onClick={() => handleEdit(consultation.id)}>Modifier</button>
               </div>

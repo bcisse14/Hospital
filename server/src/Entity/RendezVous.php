@@ -7,6 +7,7 @@ use App\Repository\RendezVousRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+
 #[ORM\Entity(repositoryClass: RendezVousRepository::class)]
 #[ApiResource]
 class RendezVous
@@ -25,10 +26,10 @@ class RendezVous
     private ?Medecin $medecin = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date_rendezvous = null;
+    private ?\DateTimeInterface $dateRendezvous = null;
 
     #[ORM\Column(type: "string", length: 20)]
-    #[Assert\Choice(choices: ["en_attente", "confirme", "annule"], message: "Choisissez un statut valide.")]
+    #[Assert\Choice(choices: ["en_attente", "confirmé", "annulé"], message: "Choisissez un statut valide.")]
     private ?string $statut = null;
 
     public function getId(): ?int
@@ -62,12 +63,12 @@ class RendezVous
 
     public function getDateRendezvous(): ?\DateTimeInterface
     {
-        return $this->date_rendezvous;
+        return $this->dateRendezvous;
     }
 
-    public function setDateRendezvous(\DateTimeInterface $date_rendezvous): static
+    public function setDateRendezvous(\DateTimeInterface $dateRendezvous): static
     {
-        $this->date_rendezvous = $date_rendezvous;
+        $this->dateRendezvous = $dateRendezvous;
 
         return $this;
     }

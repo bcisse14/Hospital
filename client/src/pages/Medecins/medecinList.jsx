@@ -38,7 +38,9 @@ function MedecinList() {
   const handleEdit = (id) => {
     navigate(`/medecins/edit/${id}`);
   };
-
+  const handleDetails = (id) => {
+    navigate(`/medecins/details/${id}`);
+  };
   // Filtrage des médecins en fonction de la recherche et de la spécialité
   const filteredMedecins = medecins.filter((medecin) => {
     const matchesSearch = `${medecin.nom} ${medecin.prenom}`
@@ -82,6 +84,9 @@ function MedecinList() {
           <li key={medecin.id}>
             {medecin.nom} {medecin.prenom} ({medecin.specialite})
             <div className="action-buttons">
+            <button onClick={() => handleDetails(medecin.id)}>
+                  Voir les détails
+                </button>
               <button onClick={() => handleDelete(medecin.id)}>Supprimer</button>
               <button onClick={() => handleEdit(medecin.id)}>Modifier</button>
             </div>

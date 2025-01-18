@@ -38,6 +38,9 @@ function PatientList() {
   const handleEdit = (id) => {
     navigate(`/patients/edit/${id}`);
   };
+  const handleDetails = (id) => {
+    navigate(`/patients/details/${id}`);
+  };
 
   const calculateAge = (birthDate) => {
     const today = new Date();
@@ -92,6 +95,9 @@ function PatientList() {
           <li key={patient.id}>
             {patient.nom} {patient.prenom} ({calculateAge(patient.date_naissance)} ans, {patient.sexe})
             <div className="action-buttons">
+            <button onClick={() => handleDetails(patient.id)}>
+                  Voir les détails
+                </button>
               <button onClick={() => handleDelete(patient.id)}>Supprimer</button>
               <button onClick={() => handleEdit(patient.id)}>Modifier</button>
             </div>

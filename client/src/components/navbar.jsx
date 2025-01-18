@@ -20,6 +20,9 @@ function Navbar() {
       <div className="navbar-links">
         {isLoggedIn ? (
           <>
+          <Link to="/rendezvous" className="navbar-link">
+            Rendez-vous
+          </Link>
           <Link to="/hospitalisations" className="navbar-link">
             Hospitalisations
           </Link>

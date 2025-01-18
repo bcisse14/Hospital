@@ -39,6 +39,9 @@ function HospitalisationList() {
   const handleEdit = (id) => {
     navigate(`/hospitalisations/edit/${id}`);
   };
+  const handleDetails = (id) => {
+    navigate(`/hospitalisations/details/${id}`);
+  };
 
   const filteredHospitalisations = hospitalisations.filter((hospitalisation) => {
     const patientId =
@@ -119,6 +122,9 @@ function HospitalisationList() {
                 Date de sortie: {hospitalisation.date_sortie ? new Date(hospitalisation.date_sortie).toLocaleDateString() : "Non spécifiée"}
               </div>
               <div className="action-buttons">
+              <button onClick={() => handleDetails(hospitalisation.id)}>
+                  Voir les détails
+                </button>
                 <button onClick={() => handleDelete(hospitalisation.id)}>
                   Supprimer
                 </button>
