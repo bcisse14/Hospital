@@ -29,6 +29,11 @@ import HospitalisationDetails from "../pages/Hospitalisations/hospitalisationDet
 import ConsultationDetails from "../pages/Consultations/consultationDetails";
 import MedecinDetail from "../pages/Medecins/medecinDetails";
 import PatientDetail from "../pages/Patients/patientDetails";
+import Pharmacie from "../pages/Pharmacie/pharmacie";
+import PharmacieDetails from "../pages/Pharmacie/pharmacieDetails";
+import AddMedicament from "../pages/Pharmacie/addPharmacie";
+import EditMedicament from "../pages/Pharmacie/editPharmacie";
+import PharmacieList from "../pages/Pharmacie/pharmacieList";
 
 
 function Router() {
@@ -70,6 +75,12 @@ function Router() {
         <Route path="/rendezvous/details/:id" element={<RendezVousDetails />} />       
       </Route>
       <Route path="/rendezvous/edit/:id" element={<EditRendezVous />} />
+      <Route path="/pharmacie" element={<Pharmacie />} >
+        <Route path="/pharmacie/add" element={<AddMedicament />} />
+        <Route path="/pharmacie/list" element={<PharmacieList />} />
+        <Route path="/pharmacie/details/:id" element={<PharmacieDetails />} />
+      </Route>  
+      <Route path="/pharmacie/edit/:id" element={<EditMedicament />} />
       </Routes>
 
 
