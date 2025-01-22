@@ -1,0 +1,240 @@
+/* Style général pour le formulaire */
+.add-hospitalisation {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* Pour le positionnement relatif des suggestions */
+}
+
+/* Titre du formulaire */
+.add-hospitalisation h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Espacement et style des labels */
+.add-hospitalisation label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Style des champs de texte et textarea */
+.add-hospitalisation input[type="text"],
+.add-hospitalisation input[type="date"],
+.add-hospitalisation select,
+.add-hospitalisation textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+.add-hospitalisation input[type="text"]:focus,
+.add-hospitalisation input[type="date"]:focus,
+.add-hospitalisation select:focus,
+.add-hospitalisation textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Style des suggestions de recherche */
+.suggestions-list {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: calc(100% - 20px);
+    /* Ajuste la largeur des suggestions en fonction du champ de saisie */
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    margin-top: 5px;
+    left: 10px;
+    /* Pour que les suggestions s'alignent correctement avec les champs de saisie */
+}
+
+/* Style des éléments de suggestion */
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Style du bouton de soumission */
+.add-hospitalisation button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.add-hospitalisation button:hover {
+    background-color: #45a049;
+}
+
+/* Ajouter un peu d'espace aux champs */
+.add-hospitalisation>div {
+    position: relative;
+}
+
+/* Ajouter un peu d'espace entre le formulaire et les éléments */
+.add-hospitalisation form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Style pour textarea (pour remarques) */
+.add-hospitalisation textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Amélioration de l'apparence du champ de recherche */
+.add-hospitalisation input[type="text"] {
+    padding-left: 30px;
+}
+
+/* Positionner les icônes à l'intérieur des champs de texte (optionnel, si tu veux ajouter une icône) */
+.add-hospitalisation input[type="text"]::placeholder {
+    font-style: italic;
+    color: #aaa;
+}
+
+/* Hospitalisation Styles */
+.hospitalisation-wrapper {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.hospitalisation-wrapper h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.hospitalisation-wrapper nav {
+    margin-bottom: 30px;
+}
+
+.consultation-link {
+    display: inline-block;
+    width: 300px;
+    padding: 15px 20px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.consultation-link:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Hospitalisation List Styles */
+.hospitalisation-list {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #ffffff;
+    margin: 20px auto;
+    max-width: 800px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hospitalisation-list h2 {
+    font-size: 2rem;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.hospitalisation-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hospitalisation-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.hospitalisation-list li:nth-child(even) {
+    background-color: #e9e9e9;
+}
+
+.hospitalisation-list button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hospitalisation-list button:hover {
+    background-color: #0056b3;
+}
+
+.hospitalisation-list button:nth-child(2) {
+    background-color: #28a745;
+}
+
+.hospitalisation-list button:nth-child(2):hover {
+    background-color: #218838;
+}
+
+.hospitalisation-list button:first-child {
+    background-color: #dc3545;
+    /* Rouge pour supprimer */
+    color: white;
+    /* Forcer la couleur du texte à blanc */
+    border: none;
+    /* Supprimer toute bordure par défaut */
+}
+
+.hospitalisation-list button:first-child:hover {
+    background-color: #c82333;
+    /* Rouge plus foncé pour l'effet hover */
+}

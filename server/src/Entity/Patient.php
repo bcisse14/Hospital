@@ -65,11 +65,56 @@ class Patient
     #[ApiProperty(readable: true, writable: false)]
     private Collection $hospitalisations;
 
+    /**
+     * @var Collection<int, Biologie>
+     */
+    #[ORM\OneToMany(targetEntity: Biologie::class, mappedBy: 'patient')]
+    private Collection $biologies;
+
+    /**
+     * @var Collection<int, Chirurgie>
+     */
+    #[ORM\OneToMany(targetEntity: Chirurgie::class, mappedBy: 'patient')]
+    private Collection $chirurgies;
+
+    /**
+     * @var Collection<int, PrescriptionMedicaments>
+     */
+    #[ORM\OneToMany(targetEntity: PrescriptionMedicaments::class, mappedBy: 'patient')]
+    private Collection $prescriptionMedicaments;
+
+    #[ORM\OneToOne(mappedBy: 'patient', cascade: ['persist', 'remove'])]
+    private ?Urgence $urgence = null;
+
+    /**
+     * @var Collection<int, Gynecologie>
+     */
+    #[ORM\OneToMany(targetEntity: Gynecologie::class, mappedBy: 'patient')]
+    private Collection $gynecologies;
+
+    /**
+     * @var Collection<int, Radiologie>
+     */
+    #[ORM\OneToMany(targetEntity: Radiologie::class, mappedBy: 'patient')]
+    private Collection $radiologies;
+
+    /**
+     * @var Collection<int, Maternite>
+     */
+    #[ORM\OneToMany(targetEntity: Maternite::class, mappedBy: 'mere')]
+    private Collection $accouchements;
+
     public function __construct()
     {
         $this->consultations = new ArrayCollection();
         $this->rendezVous = new ArrayCollection();
         $this->hospitalisations = new ArrayCollection();
+        $this->biologies = new ArrayCollection();
+        $this->chirurgies = new ArrayCollection();
+        $this->prescriptionMedicaments = new ArrayCollection();
+        $this->gynecologies = new ArrayCollection();
+        $this->radiologies = new ArrayCollection();
+        $this->accouchements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -257,6 +302,203 @@ class Patient
             // set the owning side to null (unless already changed)
             if ($hospitalisation->getPatient() === $this) {
                 $hospitalisation->setPatient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Biologie>
+     */
+    public function getBiologies(): Collection
+    {
+        return $this->biologies;
+    }
+
+    public function addBiology(Biologie $biology): static
+    {
+        if (!$this->biologies->contains($biology)) {
+            $this->biologies->add($biology);
+            $biology->setPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBiology(Biologie $biology): static
+    {
+        if ($this->biologies->removeElement($biology)) {
+            // set the owning side to null (unless already changed)
+            if ($biology->getPatient() === $this) {
+                $biology->setPatient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Chirurgie>
+     */
+    public function getChirurgies(): Collection
+    {
+        return $this->chirurgies;
+    }
+
+    public function addChirurgy(Chirurgie $chirurgy): static
+    {
+        if (!$this->chirurgies->contains($chirurgy)) {
+            $this->chirurgies->add($chirurgy);
+            $chirurgy->setPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChirurgy(Chirurgie $chirurgy): static
+    {
+        if ($this->chirurgies->removeElement($chirurgy)) {
+            // set the owning side to null (unless already changed)
+            if ($chirurgy->getPatient() === $this) {
+                $chirurgy->setPatient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PrescriptionMedicaments>
+     */
+    public function getPrescriptionMedicaments(): Collection
+    {
+        return $this->prescriptionMedicaments;
+    }
+
+    public function addPrescriptionMedicament(PrescriptionMedicaments $prescriptionMedicament): static
+    {
+        if (!$this->prescriptionMedicaments->contains($prescriptionMedicament)) {
+            $this->prescriptionMedicaments->add($prescriptionMedicament);
+            $prescriptionMedicament->setPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrescriptionMedicament(PrescriptionMedicaments $prescriptionMedicament): static
+    {
+        if ($this->prescriptionMedicaments->removeElement($prescriptionMedicament)) {
+            // set the owning side to null (unless already changed)
+            if ($prescriptionMedicament->getPatient() === $this) {
+                $prescriptionMedicament->setPatient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUrgence(): ?Urgence
+    {
+        return $this->urgence;
+    }
+
+    public function setUrgence(Urgence $urgence): static
+    {
+        // set the owning side of the relation if necessary
+        if ($urgence->getPatient() !== $this) {
+            $urgence->setPatient($this);
+        }
+
+        $this->urgence = $urgence;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Gynecologie>
+     */
+    public function getGynecologies(): Collection
+    {
+        return $this->gynecologies;
+    }
+
+    public function addGynecology(Gynecologie $gynecology): static
+    {
+        if (!$this->gynecologies->contains($gynecology)) {
+            $this->gynecologies->add($gynecology);
+            $gynecology->setPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGynecology(Gynecologie $gynecology): static
+    {
+        if ($this->gynecologies->removeElement($gynecology)) {
+            // set the owning side to null (unless already changed)
+            if ($gynecology->getPatient() === $this) {
+                $gynecology->setPatient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Radiologie>
+     */
+    public function getRadiologies(): Collection
+    {
+        return $this->radiologies;
+    }
+
+    public function addRadiology(Radiologie $radiology): static
+    {
+        if (!$this->radiologies->contains($radiology)) {
+            $this->radiologies->add($radiology);
+            $radiology->setPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRadiology(Radiologie $radiology): static
+    {
+        if ($this->radiologies->removeElement($radiology)) {
+            // set the owning side to null (unless already changed)
+            if ($radiology->getPatient() === $this) {
+                $radiology->setPatient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Maternite>
+     */
+    public function getAccouchements(): Collection
+    {
+        return $this->accouchements;
+    }
+
+    public function addAccouchement(Maternite $accouchement): static
+    {
+        if (!$this->accouchements->contains($accouchement)) {
+            $this->accouchements->add($accouchement);
+            $accouchement->setMere($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccouchement(Maternite $accouchement): static
+    {
+        if ($this->accouchements->removeElement($accouchement)) {
+            // set the owning side to null (unless already changed)
+            if ($accouchement->getMere() === $this) {
+                $accouchement->setMere(null);
             }
         }
 

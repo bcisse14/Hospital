@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Entity;
+
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\HospitalisationRepository;
 use Doctrine\DBAL\Types\Types;
@@ -16,10 +16,10 @@ class Hospitalisation
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'hospitalisations')]
-    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]    
-    private ?patient $patient = null;
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    private ?Patient $patient = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_entree = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -36,12 +36,12 @@ class Hospitalisation
         return $this->id;
     }
 
-    public function getPatient(): ?patient
+    public function getPatient(): ?Patient
     {
         return $this->patient;
     }
 
-    public function setPatient(?patient $patient): static
+    public function setPatient(?Patient $patient): static
     {
         $this->patient = $patient;
 
@@ -53,7 +53,7 @@ class Hospitalisation
         return $this->date_entree;
     }
 
-    public function setDateEntree(\DateTimeInterface $date_entree): static
+    public function setDateEntree(?\DateTimeInterface $date_entree): static
     {
         $this->date_entree = $date_entree;
 

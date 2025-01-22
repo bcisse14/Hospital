@@ -4,21 +4,21 @@ import { get, post, remove, update } from ".";
 
 
 export async function getRendezvous() {
-    return await get("/api/rendezvouses");
+    return await get("/api/rendez_vouses");
 }
 
 export async function getRendezvousById(id) {
-    return await get(`/api/rendezvouses/${id}`);
+    return await get(`/api/rendez_vouses/${id}`);
 }
 
 export async function createRendezvous(data) {
-    return await post("/api/rendezvouses", data);
+    return await post("/api/rendez_vouses", data);
 }
 
 export async function updateRendezvous(id, data) {
-    return await update(`/api/rendezvouses/${id}`, data);
+    return await update(`/api/rendez_vouses/${id}`, data);
 }
 
 export async function deleteRendezvous(id) {
-    return await remove(`/api/rendezvouses/${id}`);
+    return await remove(`/api/rendez_vouses/${id}`);
 }

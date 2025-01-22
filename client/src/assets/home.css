@@ -1,39 +1,91 @@
-/* home.css */
-
+/* Navbar principale */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #333;
+    padding: 8px 16px;
+        background-color: #004d99;
+        /* Couleur de base harmonieuse */
     color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        border-bottom: 2px solid #003366;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
 }
 
+/* Bouton Home dans la navbar */
 .navbar-logo a {
-    color: white;
+    color: #fff;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 1.5rem;
     font-weight: bold;
+    padding: 0;
+        border: none;
+        background: none;
+        transition: none;
 }
 
+/* Liens dans la navbar */
 .navbar-links {
     display: flex;
-    gap: 15px;
+    align-items: center;
+        gap: 12px;
 }
 
-.navbar-link,
-.logout-button {
+/* Liens stylisés */
+.navbar-link {
     color: white;
     text-decoration: none;
+    font-size: 14px;
+        padding: 6px 10px;
+        border-radius: 4px;
     background: none;
-    border: none;
+    transition: none;
+    }
+    
+    /* Bouton de déconnexion */
+    .logout-button {
+        color: white;
+        /* Couleur du texte */
+        background: none;
+        /* Pas de fond */
+        border: none;
+        /* Pas de bordure */
+            font-size: 14px;
     cursor: pointer;
-    font-size: 16px;
-    padding: 5px 10px;
+    text-decoration: none;
+        /* Apparence de lien */
+        padding: 0;
+        /* Pas de padding pour éviter l'effet de bouton */
+        transition: none;
+        /* Pas d'animation */
+        font-weight: bolder;
 }
 
-.navbar-link:hover,
 .logout-button:hover {
-    background-color: #555;
-    border-radius: 5px;
+    color: #ddd;
+        /* Couleur légèrement différente au survol */
+    }
+    
+    
+    /* Gestion responsive */
+    @media (max-width: 768px) {
+        .navbar {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px;
+        }
+    
+        .navbar-links {
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+    
+        .navbar-link,
+        .logout-button {
+            width: 100%;
+            text-align: center;
+        }
 }
