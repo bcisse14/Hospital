@@ -110,6 +110,7 @@ class Patient
 
 
 
+
     public function __construct()
     {
         $this->consultations = new ArrayCollection();
