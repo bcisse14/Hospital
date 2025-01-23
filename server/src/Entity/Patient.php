@@ -83,8 +83,6 @@ class Patient
     #[ORM\OneToMany(targetEntity: PrescriptionMedicaments::class, mappedBy: 'patient')]
     private Collection $prescriptionMedicaments;
 
-    #[ORM\OneToOne(mappedBy: 'patient', cascade: ['persist', 'remove'])]
-    private ?Urgence $urgence = null;
 
     /**
      * @var Collection<int, Gynecologie>
@@ -104,6 +102,14 @@ class Patient
     #[ORM\OneToMany(targetEntity: Maternite::class, mappedBy: 'mere')]
     private Collection $accouchements;
 
+    /**
+     * @var Collection<int, Urgence>
+     */
+    #[ORM\OneToMany(targetEntity: Urgence::class, mappedBy: 'patient')]
+    private Collection $urgences;
+
+
+
     public function __construct()
     {
         $this->consultations = new ArrayCollection();
@@ -115,6 +121,7 @@ class Patient
         $this->gynecologies = new ArrayCollection();
         $this->radiologies = new ArrayCollection();
         $this->accouchements = new ArrayCollection();
+        $this->urgences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -398,22 +405,6 @@ class Patient
         return $this;
     }
 
-    public function getUrgence(): ?Urgence
-    {
-        return $this->urgence;
-    }
-
-    public function setUrgence(Urgence $urgence): static
-    {
-        // set the owning side of the relation if necessary
-        if ($urgence->getPatient() !== $this) {
-            $urgence->setPatient($this);
-        }
-
-        $this->urgence = $urgence;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Gynecologie>
@@ -504,4 +495,35 @@ class Patient
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Urgence>
+     */
+    public function getUrgences(): Collection
+    {
+        return $this->urgences;
+    }
+
+    public function addUrgence(Urgence $urgence): static
+    {
+        if (!$this->urgences->contains($urgence)) {
+            $this->urgences->add($urgence);
+            $urgence->setPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUrgence(Urgence $urgence): static
+    {
+        if ($this->urgences->removeElement($urgence)) {
+            // set the owning side to null (unless already changed)
+            if ($urgence->getPatient() === $this) {
+                $urgence->setPatient(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -15,8 +15,7 @@ class Urgence
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'urgence', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(inversedBy: 'urgences')]
     private ?Patient $patient = null;
 
     public function getId(): ?int
@@ -29,7 +28,7 @@ class Urgence
         return $this->patient;
     }
 
-    public function setPatient(Patient $patient): static
+    public function setPatient(?Patient $patient): static
     {
         $this->patient = $patient;
 
