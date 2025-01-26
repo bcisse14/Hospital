@@ -1,91 +1,92 @@
-/* Navbar principale */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 16px;
-        background-color: #004d99;
-        /* Couleur de base harmonieuse */
-    color: white;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        border-bottom: 2px solid #003366;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #004d99;
+  color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid #003366;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-/* Bouton Home dans la navbar */
 .navbar-logo a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 0;
-        border: none;
-        background: none;
-        transition: none;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-/* Liens dans la navbar */
 .navbar-links {
-    display: flex;
-    align-items: center;
-        gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-/* Liens stylisés */
+.navbar-links.hidden,
+.navbar-links.open {
+  flex-direction: column;
+}
+
 .navbar-link {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-        padding: 6px 10px;
-        border-radius: 4px;
-    background: none;
-    transition: none;
-    }
-    
-    /* Bouton de déconnexion */
-    .logout-button {
-        color: white;
-        /* Couleur du texte */
-        background: none;
-        /* Pas de fond */
-        border: none;
-        /* Pas de bordure */
-            font-size: 14px;
-    cursor: pointer;
-    text-decoration: none;
-        /* Apparence de lien */
-        padding: 0;
-        /* Pas de padding pour éviter l'effet de bouton */
-        transition: none;
-        /* Pas d'animation */
-        font-weight: bolder;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.logout-button {
+  color: white;
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .logout-button:hover {
-    color: #ddd;
-        /* Couleur légèrement différente au survol */
-    }
-    
-    
-    /* Gestion responsive */
-    @media (max-width: 768px) {
-        .navbar {
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 10px;
-        }
-    
-        .navbar-links {
-            flex-direction: column;
-            gap: 8px;
-            width: 100%;
-        }
-    
-        .navbar-link,
-        .logout-button {
-            width: 100%;
-            text-align: center;
-        }
+  color: #ddd;
+}
+
+/* Menu burger */
+.menu-burger {
+  display: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.menu-burger:focus {
+  outline: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .menu-burger {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    background-color: #004d99;
+  }
+
+  .navbar-links.open {
+    display: flex;
+  }
+
+  .navbar-link,
+  .logout-button {
+    width: 100%;
+    text-align: center;
+  }
 }

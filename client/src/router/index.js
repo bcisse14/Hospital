@@ -34,12 +34,19 @@ import PharmacieDetails from "../pages/Pharmacie/pharmacieDetails";
 import AddMedicament from "../pages/Pharmacie/addPharmacie";
 import EditMedicament from "../pages/Pharmacie/editPharmacie";
 import PharmacieList from "../pages/Pharmacie/pharmacieList";
-
-
+import Urgence from "../pages/Urgence/urgence";
+import UrgenceList from "../pages/Urgence/urgenceList";
+import UrgenceDetails from "../pages/Urgence/urgenceDetails";
+import AddUrgence from "../pages/Urgence/addUrgence";
+import EditUrgence from "../pages/Urgence/editUrgence";
+import AddPrescription from "../pages/Prescriptions/addPrescription";
+import EditPrescription from "../pages/Prescriptions/editPrescription";
+import PrescriptionDetails from "../pages/Prescriptions/prescriptionDetails";
+import PrescriptionList from "../pages/Prescriptions/prescriptionList";
+import Prescription from "../pages/Prescriptions/prescription";
 function Router() {
   return (
     <BrowserRouter>
-  
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -48,44 +55,55 @@ function Router() {
         <Route path="/patients" element={<Patients />}>
           <Route path="add" element={<AddPatient />} />
           <Route path="list" element={<PatientList />} />
-          <Route path="/patients/details/:id" element={<PatientDetail />} />
+          <Route path="details/:id" element={<PatientDetail />} />
         </Route>
-          <Route path="/patients/edit/:id" element={<EditPatient />} />
+        <Route path="/patients/edit/:id" element={<EditPatient />} />
         <Route path="/medecins" element={<Medecins />}>
           <Route path="add" element={<AddMedecin />} />
-         <Route path="list" element={<MedecinList />} />
-          <Route path="/medecins/details/:id" element={<MedecinDetail />} />
+          <Route path="list" element={<MedecinList />} />
+          <Route path="details/:id" element={<MedecinDetail />} />
         </Route>
-      <Route path="/medecins/edit/:id" element={<EditMedecin />} />;
-      <Route path="/consultations" element={<Consultations />}>
-        <Route path="add" element={<AddConsultation />} />
-        <Route path="list" element={<ConsultationList />} />
-        <Route path="/consultations/details/:id" element={<ConsultationDetails />} />
-      </Route>
-      <Route path="/consultations/edit/:id" element={<EditConsultation />} />
-      <Route path="/hospitalisations" element={<Hospitalisations />}>
-        <Route path="/hospitalisations/add" element={<AddHospitalisation />} />
-        <Route path="/hospitalisations/list" element={<HospitalisationList />} />
-        <Route path="/hospitalisations/details/:id" element={<HospitalisationDetails />} />
-      </Route>
-      <Route path="/hospitalisations/edit/:id" element={<EditHospitalisation />} />
-      <Route path="/rendezvous" element={<RendezVous />} >
-        <Route path="/rendezvous/add" element={<AddRendezVous />} />
-        <Route path="/rendezvous/list" element={<RendezVousList />} />
-        <Route path="/rendezvous/details/:id" element={<RendezVousDetails />} />       
-      </Route>
-      <Route path="/rendezvous/edit/:id" element={<EditRendezVous />} />
-      <Route path="/pharmacie" element={<Pharmacie />} >
-        <Route path="/pharmacie/add" element={<AddMedicament />} />
-        <Route path="/pharmacie/list" element={<PharmacieList />} />
-        <Route path="/pharmacie/details/:id" element={<PharmacieDetails />} />
-      </Route>  
-      <Route path="/pharmacie/edit/:id" element={<EditMedicament />} />
+        <Route path="/medecins/edit/:id" element={<EditMedecin />} />
+        <Route path="/consultations" element={<Consultations />}>
+          <Route path="add" element={<AddConsultation />} />
+          <Route path="list" element={<ConsultationList />} />
+          <Route path="details/:id" element={<ConsultationDetails />} />
+        </Route>
+        <Route path="/consultations/edit/:id" element={<EditConsultation />} />
+        <Route path="/hospitalisations" element={<Hospitalisations />}>
+          <Route path="add" element={<AddHospitalisation />} />
+          <Route path="list" element={<HospitalisationList />} />
+          <Route path="details/:id" element={<HospitalisationDetails />} />
+        </Route>
+        <Route path="/hospitalisations/edit/:id" element={<EditHospitalisation />} />
+        <Route path="/rendezvous" element={<RendezVous />}>
+          <Route path="add" element={<AddRendezVous />} />
+          <Route path="list" element={<RendezVousList />} />
+          <Route path="details/:id" element={<RendezVousDetails />} />
+        </Route>
+        <Route path="/rendezvous/edit/:id" element={<EditRendezVous />} />
+        <Route path="/pharmacie" element={<Pharmacie />}>
+          <Route path="add" element={<AddMedicament />} />
+          <Route path="list" element={<PharmacieList />} />
+          <Route path="details/:id" element={<PharmacieDetails />} />
+        </Route>
+        <Route path="/pharmacie/edit/:id" element={<EditMedicament />} />
+        <Route path="/urgence" element={<Urgence />}>
+          <Route path="add" element={<AddUrgence />} />
+          <Route path="list" element={<UrgenceList />} />
+          <Route path="details/:id" element={<UrgenceDetails />} />
+        </Route>
+        <Route path="/urgence/edit/:id" element={<EditUrgence />} />
+        <Route path="/prescriptions/" element={<Prescription />}>
+          <Route path="add" element={<AddPrescription />} />
+          <Route path="list" element={<PrescriptionList />} />
+          <Route path="details/:id" element={<PrescriptionDetails />} />
+        </Route>
+        <Route path="/prescriptions/edit/:id" element={<EditPrescription />} />
       </Routes>
-
-
     </BrowserRouter>
   );
 }
 
 export default Router;
+
