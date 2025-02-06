@@ -36,7 +36,7 @@ function AddMedicament() {
       alert("Médicament ajouté avec succès !");
 
       // Redirection vers la liste des médicaments après l'ajout
-      navigate("/pharmacies/list");
+      navigate("/pharmacie/list");
 
       // Réinitialiser le formulaire après l'ajout
       setFormData({
