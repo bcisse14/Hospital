@@ -111,6 +111,7 @@ class Patient
 
 
 
+
     public function __construct()
     {
         $this->consultations = new ArrayCollection();
@@ -526,5 +527,6 @@ class Patient
 
         return $this;
     }
+
 
 }
