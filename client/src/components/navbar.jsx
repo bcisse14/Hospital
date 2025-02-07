@@ -42,6 +42,9 @@ function Navbar() {
       <div className={`navbar-links ${menuOpen ? "open" : ""}`}>
         {isLoggedIn ? (
           <>
+            <Link to="/gynecologie" className="navbar-link">
+              Gynécologie
+            </Link>
             <Link to="/prescriptions" className="navbar-link">
               Prescriptions
             </Link>
