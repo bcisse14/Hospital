@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\RadiologieRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: RadiologieRepository::class)]
 #[ApiResource]
@@ -35,6 +36,9 @@ class Radiologie
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $images = null;
+
+    // Not mapped to the database
+    private ?File $imageFile = null;
 
     public function getId(): ?int
     {
@@ -109,6 +113,18 @@ class Radiologie
     public function setImages(?string $images): static
     {
         $this->images = $images;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile): static
+    {
+        $this->imageFile = $imageFile;
 
         return $this;
     }

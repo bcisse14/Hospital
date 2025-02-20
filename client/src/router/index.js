@@ -49,6 +49,12 @@ import AddGynecology from "../pages/Gynecology/addGynecology";
 import EditGynecology from "../pages/Gynecology/editGynecology";
 import GynecologyList from "../pages/Gynecology/gynecologyList";
 import GynecologyDetails from "../pages/Gynecology/gynecologyDetails";
+import AddRadiologie from "../pages/Radiologie/addRadiologie";
+import RadiologieDetails from "../pages/Radiologie/radiologieDetails";
+import EditRadiologie from "../pages/Radiologie/editRadiologie";
+import Radiologies from "../pages/Radiologie/radiologie";
+import RadiologieList from "../pages/Radiologie/radiologieList";
+
 
 function Router() {
   return (
@@ -105,13 +111,19 @@ function Router() {
           <Route path="list" element={<PrescriptionList />} />
           <Route path="details/:id" element={<PrescriptionDetails />} />
         </Route>
-        <Route path="/gynecologie/edit/:id" element={<EditGynecology />} />
+        <Route path="/prescription/edit/:id" element={<EditPrescription />} />
         <Route path="/gynecologie/" element={<Gynecology />}>
           <Route path="add" element={<AddGynecology />} />
           <Route path="list" element={<GynecologyList />} />
           <Route path="details/:id" element={<GynecologyDetails />} />
         </Route>
-        <Route path="/gynecology/edit/:id" element={<EditGynecology />} />
+        <Route path="/gynecologie/edit/:id" element={<EditGynecology />} />
+        <Route path="/radiologie/" element={<Radiologies />}>
+          <Route path="add" element={<AddRadiologie />} />
+          <Route path="list" element={<RadiologieList />} />
+          <Route path="details/:id" element={<RadiologieDetails />} />
+        </Route>
+        <Route path="/radiologie/edit/:id" element={<EditRadiologie />} />
       </Routes>
     </BrowserRouter>
   );
