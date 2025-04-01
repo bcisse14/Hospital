@@ -42,6 +42,12 @@ function Navbar() {
       <div className={`navbar-links ${menuOpen ? "open" : ""}`}>
         {isLoggedIn ? (
           <>
+            <Link to="/maternite" className="navbar-link">
+              Maternité
+            </Link>
+            <Link to="/biologie" className="navbar-link">
+              Biologie
+            </Link>
             <Link to="/radiologie" className="navbar-link">
               Radiologie
             </Link>
@@ -71,6 +77,12 @@ function Navbar() {
             </Link>
             <Link to="/medecins" className="navbar-link">
               Médecins
+            </Link>
+            <Link to="/chirurgie" className="navbar-link">
+              Chirurgies
+            </Link>
+            <Link to="/bloc" className="navbar-link">
+              Blocs
             </Link>
             <button onClick={handleLogout} className="logout-button">
               Se Déconnecter

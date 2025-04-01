@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\BlocOperatoire;
+use App\Entity\Bebe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<BlocOperatoire>
+ * @extends ServiceEntityRepository<Bebe>
  */
-class BlocOperatoireRepository extends ServiceEntityRepository
+class BebeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, BlocOperatoire::class);
+        parent::__construct($registry, Bebe::class);
     }
 
     //    /**
-    //     * @return BlocOperatoire[] Returns an array of BlocOperatoire objects
+    //     * @return Bebe[] Returns an array of Bebe objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class BlocOperatoireRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?BlocOperatoire
+    //    public function findOneBySomeField($value): ?Bebe
     //    {
     //        return $this->createQueryBuilder('b')
     //            ->andWhere('b.exampleField = :val')

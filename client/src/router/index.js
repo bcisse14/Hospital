@@ -54,7 +54,28 @@ import RadiologieDetails from "../pages/Radiologie/radiologieDetails";
 import EditRadiologie from "../pages/Radiologie/editRadiologie";
 import Radiologies from "../pages/Radiologie/radiologie";
 import RadiologieList from "../pages/Radiologie/radiologieList";
+import Biologie from "../pages/Biologie/biologie";
+import BiologieDetails from "../pages/Biologie/biologieDetails";
+import BiologieList from "../pages/Biologie/biologieList";
+import AddBiologie from "../pages/Biologie/addBiologie";
+import EditBiologie from "../pages/Biologie/editBiologie";
+import AddMaternite from "../pages/Maternite/addMaternite";
+import EditMaternite from "../pages/Maternite/editMaternite";
+import MaterniteDetails from "../pages/Maternite/materniteDetails";
+import Maternite from "../pages/Maternite/maternite";
+import MaterniteList from "../pages/Maternite/materniteList";
 
+import Bloc from "../pages/Bloc/bloc";
+import AddBloc from "../pages/Bloc/addBloc";
+import EditBloc from "../pages/Bloc/editBloc";
+import BlocList from "../pages/Bloc/blocList";
+import BlocDetails from "../pages/Bloc/blocDetails";
+
+import Chirurgie from "../pages/Chirurgie/chirurgie";
+import AddChirurgie from "../pages/Chirurgie/addChirurgie";
+import EditChirurgie from "../pages/Chirurgie/editChirurgie";
+import ChirurgieList from "../pages/Chirurgie/chirurgieList";
+import ChirurgieDetails from "../pages/Chirurgie/chirurgieDetails";
 
 function Router() {
   return (
@@ -124,6 +145,34 @@ function Router() {
           <Route path="details/:id" element={<RadiologieDetails />} />
         </Route>
         <Route path="/radiologie/edit/:id" element={<EditRadiologie />} />
+        <Route path="/biologie/" element={<Biologie />}>
+          <Route path="add" element={<AddBiologie />} />
+          <Route path="list" element={<BiologieList />} />
+          <Route path="details/:id" element={<BiologieDetails />} />
+        </Route>
+        <Route path="/biologie/edit/:id" element={<EditBiologie />} />
+        <Route path="/maternite/" element={<Maternite />}>
+          <Route path="add" element={<AddMaternite />} />
+          <Route path="list" element={<MaterniteList />} />
+          <Route path="details/:id" element={<MaterniteDetails />} />
+        </Route>
+        <Route path="/maternite/edit/:id" element={<EditMaternite/>} />
+
+        {/* Bloc Routes */}
+        <Route path="/bloc" element={<Bloc />}>
+          <Route path="add" element={<AddBloc />} />
+          <Route path="list" element={<BlocList />} />
+          <Route path="details/:id" element={<BlocDetails />} />
+        </Route>
+        <Route path="/bloc/edit/:id" element={<EditBloc />} />
+
+        {/* Chirurgie Routes */}
+        <Route path="/chirurgie" element={<Chirurgie />}>
+          <Route path="add" element={<AddChirurgie />} />
+          <Route path="list" element={<ChirurgieList />} />
+          <Route path="details/:id" element={<ChirurgieDetails />} />
+        </Route>
+        <Route path="/chirurgie/edit/:id" element={<EditChirurgie />} />
       </Routes>
     </BrowserRouter>
   );

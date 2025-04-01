@@ -47,11 +47,7 @@ class Medecin
     #[ORM\OneToMany(targetEntity: RendezVous::class, mappedBy: 'medecin')]
     private Collection $rendezVous;
 
-    /**
-     * @var Collection<int, Chirurgie>
-     */
-    #[ORM\OneToMany(targetEntity: Chirurgie::class, mappedBy: 'chirurgien')]
-    private Collection $chirurgies;
+
 
     /**
      * @var Collection<int, PrescriptionMedicaments>
@@ -59,11 +55,12 @@ class Medecin
     #[ORM\OneToMany(targetEntity: PrescriptionMedicaments::class, mappedBy: 'prescripteur')]
     private Collection $prescriptionMedicaments;
 
+
+
     public function __construct()
     {
         $this->consultations = new ArrayCollection();
         $this->rendezVous = new ArrayCollection();
-        $this->chirurgies = new ArrayCollection();
         $this->prescriptionMedicaments = new ArrayCollection();
     }
 
@@ -204,35 +201,8 @@ class Medecin
         return $this;
     }
 
-    /**
-     * @return Collection<int, Chirurgie>
-     */
-    public function getChirurgies(): Collection
-    {
-        return $this->chirurgies;
-    }
 
-    public function addChirurgy(Chirurgie $chirurgy): static
-    {
-        if (!$this->chirurgies->contains($chirurgy)) {
-            $this->chirurgies->add($chirurgy);
-            $chirurgy->setChirurgien($this);
-        }
 
-        return $this;
-    }
-
-    public function removeChirurgy(Chirurgie $chirurgy): static
-    {
-        if ($this->chirurgies->removeElement($chirurgy)) {
-            // set the owning side to null (unless already changed)
-            if ($chirurgy->getChirurgien() === $this) {
-                $chirurgy->setChirurgien(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, PrescriptionMedicaments>
@@ -263,4 +233,6 @@ class Medecin
 
         return $this;
     }
+
+
 }

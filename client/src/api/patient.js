@@ -22,6 +22,7 @@ export async function updatePatient(id, data) {
         telephone: data.telephone,
         num_secu_social: data.num_secu_social,
         sexe: data.sexe,
+        // numero_dossier: data.numero_dossier
       })
 }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getHospitalisationById, updateHospitalisation } from "../../api/hospitalisation";
 import { getPatients } from "../../api/patient";
-import "../../assets/hospitalisation.css";
+import "../../assets/unified.css";
 
 function EditHospitalisation() {
   const { id } = useParams();

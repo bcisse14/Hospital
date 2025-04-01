@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\MaterniteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,9 +22,6 @@ class Maternite
     #[ORM\JoinColumn(nullable: false)]
     private ?Patient $mere = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Patient $bebe = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_accouchement = null;
 
@@ -31,6 +30,14 @@ class Maternite
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $notes = null;
+
+    #[ORM\ManyToMany(targetEntity: Bebe::class, inversedBy: 'maternites')]
+    private Collection $bebes;
+
+    public function __construct()
+    {
+        $this->bebes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -45,18 +52,6 @@ class Maternite
     public function setMere(?Patient $mere): static
     {
         $this->mere = $mere;
-
-        return $this;
-    }
-
-    public function getBebe(): ?Patient
-    {
-        return $this->bebe;
-    }
-
-    public function setBebe(?Patient $bebe): static
-    {
-        $this->bebe = $bebe;
 
         return $this;
     }
@@ -93,6 +88,30 @@ class Maternite
     public function setNotes(?string $notes): static
     {
         $this->notes = $notes;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Bebe>
+     */
+    public function getBebes(): Collection
+    {
+        return $this->bebes;
+    }
+
+    public function addBebe(Bebe $bebe): static
+    {
+        if (!$this->bebes->contains($bebe)) {
+            $this->bebes->add($bebe);
+        }
+
+        return $this;
+    }
+
+    public function removeBebe(Bebe $bebe): static
+    {
+        $this->bebes->removeElement($bebe);
 
         return $this;
     }
